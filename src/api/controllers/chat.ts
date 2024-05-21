@@ -1,14 +1,14 @@
-import { PassThrough } from "stream";
-import path from 'path';
+import axios, { AxiosResponse } from 'axios';
 import _ from 'lodash';
 import mime from 'mime';
-import axios, { AxiosResponse } from 'axios';
+import path from 'path';
+import { PassThrough } from "stream";
 
-import APIException from "@/lib/exceptions/APIException.ts";
 import EX from "@/api/consts/exceptions.ts";
-import { createParser } from 'eventsource-parser'
+import APIException from "@/lib/exceptions/APIException.ts";
 import logger from '@/lib/logger.ts';
 import util from '@/lib/util.ts';
+import { createParser } from 'eventsource-parser';
 
 // 模型名称
 const MODEL_NAME = 'kimi';
@@ -594,8 +594,8 @@ async function uploadFile(fileUrl: string, refreshToken: string) {
       responseType: 'arraybuffer',
       // 100M限制
       maxContentLength: FILE_MAX_SIZE,
-      // 60秒超时
-      timeout: 60000
+      // 600000秒超时
+      timeout: 600000
     }));
   }
 
